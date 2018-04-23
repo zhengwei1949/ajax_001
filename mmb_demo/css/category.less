@@ -1,0 +1,41 @@
+.category{
+    background-color:#f5f5f5;
+    border-top:1px solid #ddd;
+    >li{
+        border-bottom:1px solid #ddd;
+        box-shadow:0 1px 1px rgba(0, 0, 0, .05);
+        /*默认折叠状态*/
+        h3{
+            padding:10px 15px;
+            background:url(../images/arrow-down.svg)  right 10px center no-repeat;
+            background-size:10px 14px;
+        }
+        >ul{
+            border:1px solid #ccc;
+            background:#f9f9f9;
+            display: none;
+            >li{
+                float:left;
+                width:33.33333333333%;
+                height:40px;
+                line-height: 40px;
+                text-align:center;
+                border-right:1px solid #ccc;
+                border-bottom:1px solid #ccc;
+                &:nth-child(3n){
+                    border-right:none;
+                }
+            }
+        } 
+        /*点击展开的状态*/
+        &.active{
+            h3{
+                background-image:url(../images/arrow-up.svg);
+            }
+            >ul{
+                display: block;
+            }
+        } 
+    }
+    
+}

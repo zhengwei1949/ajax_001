@@ -1,0 +1,38 @@
+.category {
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+}
+.category > li {
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  /*默认折叠状态*/
+  /*点击展开的状态*/
+}
+.category > li h3 {
+  padding: 10px 15px;
+  background: url(../images/arrow-down.svg) right 10px center no-repeat;
+  background-size: 10px 14px;
+}
+.category > li > ul {
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  display: none;
+}
+.category > li > ul > li {
+  float: left;
+  width: 33.33333333333%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.category > li > ul > li:nth-child(3n) {
+  border-right: none;
+}
+.category > li.active h3 {
+  background-image: url(../images/arrow-up.svg);
+}
+.category > li.active > ul {
+  display: block;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .searchForm {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .clearfix::after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden
+        }
+
+        .searchArea {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .searchArea li {
+            list-style: none;
+            float: left;
+            width: 30%;
+            margin-right: 5%;
+            border: 1px solid black;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            text-align: center;
+
+            padding: 20px;
+        }
+
+        .searchArea li:hover {
+            border: none;
+            -moz-box-shadow: 0px 2px 5px #333333;
+            -webkit-box-shadow: 0px 2px 5px #333333;
+            box-shadow: 0px 2px 5px #333333;
+        }
+
+        .searchArea li:nth-child(3n) {
+            margin-right: 0;
+        }
+
+        .searchArea li img {
+            width: 80%;
+            height: 300px;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="searchForm">
+        <input type="text" id="txt">
+        <input type="button" value="搜索" id="btn">
+    </form>
+    <ul class="searchArea clearfix" id="content">
+
+    </ul>
+<script src="./jquery.js"></script>
+<script>
+    //用户在输入框里面输入内容 --> 点击搜索 --> 通过搜索关键字去请求数据 --> 渲染到页面上
+    $(function(){
+        $('#btn').click(function(){
+            //1. 获取输入框值
+            var txt = $('#txt').val();
+            //2. 构建请求URL
+            var url = 'https://api.douban.com/v2/movie/search';
+            //3.用jsonp
+            $.ajax({
+                url:url,
+                data:{
+                    q:txt
+                },
+                dataType:'jsonp',
+                success:function(res){
+                    // console.log(res);
+                    var html = '';
+                    for(var i=0;i<res.subjects.length;i++){
+                        html+='<li><img src="'+res.subjects[i].images.large+'"  onerror=\'this.src=\"https://img3.doubanio.com/f/movie/30c6263b6db26d055cbbe73fe653e29014142ea3/pics/movie/movie_default_large.png\"\'></li>';
+                    }
+                    // console.log(html);
+                    //4.放到页面中
+                    $('#content').html(html);
+                }
+            })
+        })
+    })
+</script>
+</body>
+
+</html>

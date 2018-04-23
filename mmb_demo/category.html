@@ -1,0 +1,87 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>rem test end</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/category.css">
+</head>
+
+<body>
+  <!--头部区域 开始-->
+  <div class="header clearfix">
+    <div class="leftArea fl">
+      <a href="#">
+        <img src="./images/header_logo.png" alt="">
+      </a>
+    </div>
+    <div class="rightArea fr">
+      <a href="#">
+        <img src="./images/header_app.png" alt="">
+      </a>
+    </div>
+  </div>
+  <!--头部区域 结束-->
+
+  <!--搜索区域 开始-->
+  <div class="search clearfix">
+    <input type="text" placeholder="请输入要比价的商品">
+    <input type="submit" value="搜索">
+  </div>
+  <!--搜索区域 结束-->
+
+  <!--分类 开始-->
+  <ul class="category" id="category">
+    
+  </ul>
+  <!--分类 结束-->
+<script src="./libs/jquery.js"></script>
+<script src="./libs/template.js"></script>
+<script type="text/template" id="firstCate">
+  <%for(var i=0;i<result.length;i++){%>
+  <li data-titleid="<%=result[i].titleId%>">
+    <h3><%=result[i].title%></h3>
+  </li>
+  <%}%>
+</script>
+<script type="text/template" id="secondCate">
+  <ul class="clearfix">
+    <%for(var i=0;i<result.length;i++){%>
+      <li><%=result[i].category%></li>
+    <%}%>
+  </ul>
+</script>
+<script>
+  $(function(){
+    $.get('http://127.0.0.1:3000/api/getcategorytitle',function(res){
+      console.log(res);
+      var html = template('firstCate',res);
+      $('#category').html(html);
+    })
+    //二级菜单
+    $('body').on('click','#category>li',function(){
+      //如果当前是active了，则折叠
+      if($(this).hasClass('active')){
+        $(this).removeClass('active');
+        return;
+      }
+      //如果已经有了，则不用请求ajax
+      if($(this).find('ul').length > 0){
+        $(this).addClass('active').siblings().removeClass();
+        return;
+      }
+      // console.log($(this).data('titleid'));
+      var id = $(this).data('titleid');
+      var _this = this;
+      $.get('http://127.0.0.1:3000/api/getcategory',{titleid:id},function(res){
+        // console.log(res);
+        var html = template('secondCate', res);
+        $(_this).addClass('active').siblings().removeClass('active').end().append(html)
+      })
+    })
+  })
+</script>
+</body>
+
+</html>

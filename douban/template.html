@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .searchForm{
+        display: flex;
+        justify-content: center;
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+    .clearfix::after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .searchArea{
+        width:80%;
+        margin:0 auto;
+    }
+    .searchArea li{
+        list-style: none;
+        float: left;
+        width:30%;
+        margin-right:5%;
+        border:1px solid black;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        text-align: center;
+        
+        padding:20px;
+    }
+    .searchArea li:hover{
+        border:none;
+        -moz-box-shadow:0px 2px 5px #333333; -webkit-box-shadow:0px 2px 5px #333333; box-shadow:0px 2px 5px #333333;
+    }
+    .searchArea li:nth-child(3n){
+        margin-right:0;
+    }
+    .searchArea li img{
+        width:80%;
+        height:300px;
+        vertical-align: top;
+    }
+    </style>
+</head>
+<body>
+    <form class="searchForm">
+        <input type="text">
+        <input type="button" value="搜索">
+    </form>
+    <div class="wrapper">
+        <ul class="searchArea clearfix">
+            <li>
+                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2513253791.jpg" alt="">
+            </li>
+            <li>
+                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2513253791.jpg" alt="">
+            </li>
+            <li>
+                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2513253791.jpg" alt="">
+            </li>
+            <li>
+                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2513253791.jpg" alt="">
+            </li>
+            <li>
+                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2513253791.jpg" alt="">
+            </li>
+            <li>
+                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2513253791.jpg" alt="">
+            </li>
+            <li>
+                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2513253791.jpg" alt="">
+            </li>
+            <li>
+                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2513253791.jpg" alt="">
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
